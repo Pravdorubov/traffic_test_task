@@ -15,7 +15,7 @@ class Department(models.Model):
 
 class Duty(models.Model):
     name = models.CharField(max_length=200)
-    weigt = models.IntegerField()
+    weight = models.IntegerField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     def __str__(self):
