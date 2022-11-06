@@ -25,13 +25,25 @@ def get_dep_data(deps, sup_dep_list):
             get_dep_data(sub_deps, dep_dict["sub_depts"] )
         sup_dep_list.append(dep_dict)
 
+# def index(request):
+#     data = {}
+#     data["majors"] = []
+#     major_deps =[d for d in Department.objects.filter(level=1)]
+#     for md in major_deps:
+#         get_dep_data(major_deps, data["majors"])
+#     context = {
+#         "data" : data
+#     }
+#     return render(request, "ttt/index.html", context)
+
 def index(request):
-    data = {}
-    data["majors"] = []
-    major_deps =[d for d in Department.objects.filter(level=1)]
-    for md in major_deps:
-        get_dep_data(major_deps, data["majors"])
     context = {
-        "data" : data
+        "data" : [d for d in Department.objects.filter(level=1)]
     }
     return render(request, "ttt/index.html", context)
+
+def load(request, dep_id):
+    context = {
+        "data" : Department.objects.get(id = dep_id)
+    }
+    return render(request, "ttt/load.html", context)

@@ -19,6 +19,7 @@ from ttt import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('load/<int:dep_id>', views.load, name="load"),
     # path('ttt/', include('ttt.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script src="{% static 'openaccordion.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+{% if data %}
+
+<div class="accordion accordion-flush" id="deps">
+    {% for dep in data.majors %}
+        <div class="accordion-item" data-id="{{ dep.name }}">
+            <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                {{ dep.name }}
+            </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#deps">
+                <div class="accordion-body">
+                    {% for e in dep.employers %}
+                        {{ e.name }} {{ e.date }} {{ e.salary }} {{ e.duty }} <br/>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{#    <li>{{ dep.name }}</li>#}
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
+

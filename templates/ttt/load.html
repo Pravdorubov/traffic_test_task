@@ -1,0 +1,39 @@
+<div class="employers">
+    <table>
+        <thead>
+            <th>
+                <td>Должность</td>
+                <td>ФИО</td>
+                <td>Дапа поступления</td>
+                <td>Оклад</td>
+            </th>
+        </thead>
+        <tbody>
+            {% for e in data.description.employers %}
+                <th>
+                    <td>{{ e.duty }}</td>
+                    <td>{{ e.name }}</td>
+                    <td>{{ e.date}}</td>
+                    <td>{{ e.salary }}</td>
+                </th>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="deps" data-id="{{ data.id }}">
+    {% for d in data.description.sub_deps %}
+        <div class="accordion-item" data-id="{{ d.id }}">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  {{ d.name }}
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body" data-id="{{ d.id }}">
+
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
