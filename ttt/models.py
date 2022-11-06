@@ -13,7 +13,7 @@ class Department(models.Model):
         dep_dict["id"] = self.id
         dep_emps = [e.get_employer_data for e in Employer.objects.filter(duty__department=self).order_by()]
         dep_dict["employers"] = dep_emps
-        sub_deps = [d for d in Department.objects.filter(major_id=self.id)]
+        sub_deps = [(d.id, d.name) for d in Department.objects.filter(major_id=self.id)]
         dep_dict["sub_deps"] = sub_deps
 
         return dep_dict
@@ -30,7 +30,7 @@ class Duty(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s of %s" % (self.name, self.department.name)
+        return "%s из %s" % (self.name, self.department.name)
 
     class Meta:
         verbose_name_plural = "Duties"
